@@ -34,13 +34,12 @@ never sent to the browser at all.
 | `CNAME` | Tells GitHub Pages to serve the custom domain |
 | `set-password.sh` | Rewrites the hash in `index.html` |
 
-## Custom domain (do this after DNS is set)
+## Custom domain
 
-The repo ships without a `CNAME` so the site is reachable at the github.io URL
-straight away. Once the Hostpoint A records point at GitHub, run:
+Live at https://melaniebossert.com. DNS lives at Hostpoint: four A records on the
+bare domain pointing at GitHub's Pages addresses, no AAAA record at all, and a
+`www` CNAME to `melboo.github.io`. The mail records there are untouched and
+unrelated.
 
-```bash
-mv CNAME.pending CNAME && git add CNAME && git commit -m "Point at melaniebossert.com" && git push
-```
-
-Then set the custom domain in Settings → Pages and tick "Enforce HTTPS".
+The `CNAME` file in this repo is what tells Pages to answer on that name, so
+don't delete it.
