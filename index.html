@@ -62,7 +62,12 @@ body{
   font-size:clamp(2.5rem,1.7rem + 4vw,5rem);
   line-height:1.05;
   letter-spacing:-0.02em;
-  margin:0;
+  /* Optical alignment. The M carries a left side bearing of 0.064em, so at
+     display size its ink sits ~5px right of its box while every other first
+     glyph on the page sits within 1px of theirs. Pulling the box left by the
+     bearing puts the ink on the same line as the text beneath it. In em so it
+     holds at every clamp step. */
+  margin:0 0 0 -0.064em;
 }
 .role{
   font-family:var(--mono);
