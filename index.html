@@ -111,12 +111,12 @@ input[type=password]{
 }
 input[type=password]::placeholder{color:var(--field)}
 input[type=password]:hover{border-color:var(--ink)}
-input[type=password]:focus-visible,button:focus-visible{
+input[type=password]:focus-visible,button:focus-visible,.btn:focus-visible{
   outline:2px solid var(--focus);
   outline-offset:2px;
   border-color:transparent;
 }
-button{
+button,.btn{
   flex:0 0 auto;
   min-height:48px;
   padding:.7rem 1.4rem;
@@ -131,7 +131,20 @@ button{
   cursor:pointer;
   transition:opacity .18s ease;
 }
-button:hover{opacity:.82}
+button:hover,.btn:hover{opacity:.82}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.btn-quiet{color:var(--ink);background:transparent;border-color:var(--field)}
+.btn-quiet:hover{opacity:1;border-color:var(--ink)}
+
+.status{
+  font-family:var(--mono);
+  font-size:.75rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:0 0 1.25rem;
+}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem}
 
 .msg{
   font-family:var(--mono);
@@ -191,13 +204,21 @@ footer{
     </section>
 
     <section id="soon" hidden>
+      <p class="status">No content found</p>
+
       <p class="note">
-        You&rsquo;re in. The work isn&rsquo;t here yet &mdash; case studies are being
-        written now, and this page becomes the real site when they land.
+        You&rsquo;re through, and there is nothing here. That is not a bug.
+        The case studies are still being written.
       </p>
       <p class="note">
-        In the meantime, reply to my email and I&rsquo;ll walk you through the work directly.
+        If you want to see the work before it goes public, email me and
+        I&rsquo;ll take you through it myself.
       </p>
+
+      <div class="actions">
+        <a class="btn" href="mailto:mnbossert@gmail.com?subject=The%20work">Email me</a>
+        <button type="button" class="btn-quiet" id="lock">Lock again</button>
+      </div>
     </section>
 
   </div>
@@ -228,14 +249,27 @@ footer{
   var msg = document.getElementById("msg");
   var gate = document.getElementById("gate");
   var soon = document.getElementById("soon");
+  var lock = document.getElementById("lock");
 
-  function open(){
+  function unlock(){
     gate.hidden = true;
     soon.hidden = false;
     try{ sessionStorage.setItem("mb_open","1"); }catch(e){}
   }
 
-  try{ if(sessionStorage.getItem("mb_open") === "1") open(); }catch(e){}
+  function relock(){
+    soon.hidden = true;
+    gate.hidden = false;
+    input.value = "";
+    msg.textContent = "";
+    msg.removeAttribute("data-state");
+    try{ sessionStorage.removeItem("mb_open"); }catch(e){}
+    input.focus();
+  }
+
+  lock.addEventListener("click", relock);
+
+  try{ if(sessionStorage.getItem("mb_open") === "1") unlock(); }catch(e){}
 
   async function sha256(str){
     var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
@@ -274,7 +308,7 @@ footer{
     }
     if(ok){
       msg.textContent = "";
-      open();
+      unlock();
     }else{
       msg.textContent = "Not that one. Email me for the password.";
       msg.dataset.state = "error";
