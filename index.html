@@ -6,12 +6,11 @@
 <title>Melanie Bossert</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Private. Email for access.">
-<link rel="preload" href="fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/apfel-grotezk-regular.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Instrument Serif";src:url("fonts/instrument-serif-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Instrument Sans";src:url("fonts/instrument-sans-400-600.woff2") format("woff2");font-weight:400 600;font-style:normal;font-display:swap}
-@font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+/* One typeface, one weight, for the whole page. Apfel Grotezk by Collletttivo,
+   SIL OFL 1.1 — licence in fonts/ApfelGrotezk-LICENSE.txt. */
+@font-face{font-family:"Apfel Grotezk";src:url("fonts/apfel-grotezk-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
   --paper:#f8f6f1;
@@ -20,9 +19,13 @@
   --rule:#dcd8ce;
   --field:#8f8a7e;
   --focus:#1c1b18;
-  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font:"Apfel Grotezk","Helvetica Neue",Arial,sans-serif;
+  /* Aliases kept so the roles stay readable in the rules below. All three
+     resolve to the same face by choice — hierarchy comes from size, case and
+     tracking, never from swapping family. */
+  --serif:var(--font);
+  --sans:var(--font);
+  --mono:var(--font);
   --step:clamp(1.5rem,1.1rem + 1.6vw,2rem);
 }
 
@@ -59,13 +62,13 @@ body{
   font-weight:400;
   font-size:clamp(2.4rem,1.8rem + 3.2vw,3.5rem);
   line-height:1.05;
-  letter-spacing:-0.01em;
+  letter-spacing:-0.02em;
   margin:0;
 }
 .role{
   font-family:var(--mono);
   font-size:.75rem;
-  letter-spacing:.08em;
+  letter-spacing:normal;
   text-transform:lowercase;
   color:var(--ink-soft);
   margin:.9rem 0 0;

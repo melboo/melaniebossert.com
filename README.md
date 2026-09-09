@@ -30,7 +30,7 @@ never sent to the browser at all.
 | File | Purpose |
 |---|---|
 | `index.html` | The whole page: markup, styles, gate script |
-| `fonts/` | Self-hosted Instrument Serif / Sans, IBM Plex Mono — no CDN request |
+| `fonts/` | Apfel Grotezk (Collletttivo, SIL OFL 1.1), self-hosted, one weight |
 | `CNAME` | Tells GitHub Pages to serve the custom domain |
 | `set-password.sh` | Rewrites the hash in `index.html` |
 
