@@ -13,11 +13,10 @@
 @font-face{font-family:"Apfel Grotezk";src:url("fonts/apfel-grotezk-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
-  --paper:#f8f6f1;
-  --ink:#1c1b18;
-  --ink-soft:#6b6862;
-  --rule:#dcd8ce;
-  --field:#8f8a7e;
+  --paper:#ffffff;
+  --ink:#161615;
+  --ink-soft:#6a6a68;
+  --field:#8c8c8a;
   --focus:#1c1b18;
   --font:"Apfel Grotezk","Helvetica Neue",Arial,sans-serif;
   /* Aliases kept so the roles stay readable in the rules below. All three
@@ -60,7 +59,7 @@ body{
 .mark{
   font-family:var(--serif);
   font-weight:400;
-  font-size:clamp(2.4rem,1.8rem + 3.2vw,3.5rem);
+  font-size:clamp(2.5rem,1.7rem + 4vw,5rem);
   line-height:1.05;
   letter-spacing:-0.02em;
   margin:0;
@@ -73,8 +72,6 @@ body{
   color:var(--ink-soft);
   margin:.9rem 0 0;
 }
-
-.rule{border:0;border-top:1px solid var(--rule);margin:2.5rem 0}
 
 .note{
   margin:0 0 1.75rem;
@@ -168,6 +165,7 @@ footer{
 }
 
 /* revealed state */
+#gate,#soon{margin-top:3.5rem}
 #gate[hidden],#soon[hidden]{display:none!important}
 #soon{animation:fade .5s ease both}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -184,8 +182,6 @@ footer{
 
     <h1 class="mark">Melanie Bossert</h1>
     <p class="role">ai product designer · switzerland</p>
-
-    <hr class="rule">
 
     <section id="gate">
       <p class="note">
